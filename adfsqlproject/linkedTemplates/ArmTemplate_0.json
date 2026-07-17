@@ -1,0 +1,54 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfsqlproject"
+		},
+		"AzureSqlDatabaseLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabaseLS'"
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ytprojectserver.database.windows.net"
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "adfsqldatabase"
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ytserveradmin"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabaseLS_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabaseLS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabaseLS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabaseLS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

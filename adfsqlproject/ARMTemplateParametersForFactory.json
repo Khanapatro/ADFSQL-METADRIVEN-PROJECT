@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfsqlproject"
+		},
+		"AzureSqlDatabaseLS_password": {
+			"value": ""
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_server": {
+			"value": "ytprojectserver.database.windows.net"
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_database": {
+			"value": "adfsqldatabase"
+		},
+		"AzureSqlDatabaseLS_properties_typeProperties_userName": {
+			"value": "ytserveradmin"
+		}
+	}
+}
