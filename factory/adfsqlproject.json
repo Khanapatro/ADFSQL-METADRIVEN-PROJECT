@@ -1,0 +1,15 @@
+{
+	"name": "adfsqlproject",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cb26e2e3-060f-48e1-abe0-d926d4de1926",
+		"tenantId": "d9c3cdad-6752-4886-b991-9c52a9afd083"
+	}
+}
