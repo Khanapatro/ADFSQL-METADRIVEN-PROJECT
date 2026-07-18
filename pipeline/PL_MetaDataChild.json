@@ -159,7 +159,9 @@
 										}
 									}
 								},
-								"fieldList": [],
+								"fieldList": [
+									"lastModified"
+								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
