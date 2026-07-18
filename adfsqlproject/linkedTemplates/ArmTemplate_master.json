@@ -7,9 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfsqlproject"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
 		"AzureSqlDatabaseLS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabaseLS'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adfsqlstorageacc.dfs.core.windows.net/"
 		},
 		"AzureSqlDatabaseLS_properties_typeProperties_server": {
 			"type": "string",
@@ -50,8 +58,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
 					"AzureSqlDatabaseLS_password": {
 						"value": "[parameters('AzureSqlDatabaseLS_password')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
 					"AzureSqlDatabaseLS_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDatabaseLS_properties_typeProperties_server')]"

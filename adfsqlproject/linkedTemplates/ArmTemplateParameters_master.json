@@ -5,8 +5,14 @@
 		"factoryName": {
 			"value": "adfsqlproject"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"AzureSqlDatabaseLS_password": {
 			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adfsqlstorageacc.dfs.core.windows.net/"
 		},
 		"AzureSqlDatabaseLS_properties_typeProperties_server": {
 			"value": "ytprojectserver.database.windows.net"
