@@ -1,0 +1,191 @@
+{
+	"name": "PL_MetaDataChild",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetFilesInfo",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "LS_ADLS",
+						"type": "DatasetReference",
+						"parameters": {
+							"param_foldername": {
+								"value": "@pipeline().parameters.param_foldername",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"childItems",
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "LoopInFiles",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetFilesInfo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetFilesInfo').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "UpdateMetadata",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "GetFileMetadata",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[audit].[usp_RegisterFileMetadata]",
+								"storedProcedureParameters": {
+									"FileName": {
+										"value": {
+											"value": "@variables('FileName')",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"LastModified": {
+										"value": {
+											"value": "@activity('GetFileMetadata').output.lastModified",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"TableName": {
+										"value": {
+											"value": "@pipeline().parameters.param_foldername",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabaseLS",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "SetFileName",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileName",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "GetFileMetadata",
+							"type": "GetMetadata",
+							"dependsOn": [
+								{
+									"activity": "SetFileName",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "DS_ADLS",
+									"type": "DatasetReference",
+									"parameters": {
+										"ParamFolderName": {
+											"value": "@pipeline().parameters.param_foldername",
+											"type": "Expression"
+										},
+										"ParamFileName": {
+											"value": "@variables('FileName')",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"param_foldername": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"FileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-06-24T13:56:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

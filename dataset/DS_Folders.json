@@ -1,0 +1,12 @@
+{
+	"name": "DS_Folders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
