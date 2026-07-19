@@ -204,22 +204,52 @@ sequenceDiagram
 
 
 ## 📂 Folder Structure
-
+ 
 ```
-📦 adf-metadata-framework
- ┣ 📂 pipelines
- ┃ ┣ 📜 PL_RegisterMetadata.json
- ┃ ┗ 📜 PL_MetaDataChild.json
- ┣ 📂 datasets
- ┣ 📂 sql
- ┃ ┣ 📜 create_audit_schema.sql
- ┃ ┣ 📜 audit.ETL_Config.sql
- ┃ ┣ 📜 audit.FileControl.sql
- ┃ ┗ 📜 audit.FileWatermarkControl.sql
- ┣ 📂 images
- ┗ 📜 README.md
+📦 ADFSQL-METADRIVEN-PROJECT
+ ┣ 📂 factory
+ ┃ ┗ 📜 adfsqlproject.json                # ADF factory-level definition
+ ┃
+ ┣ 📂 pipeline
+ ┃ ┣ 📜 PL_RegisterMetadata.json          # Parent pipeline
+ ┃ ┗ 📜 PL_MetaDataChild.json             # Child pipeline
+ ┃
+ ┣ 📂 dataset
+ ┃ ┗ 📜 *.json                            # ADF dataset definitions (source/sink)
+ ┃
+ ┣ 📂 linkedService
+ ┃ ┗ 📜 AzureDataLakeStorage1.json        # Linked service to ADLS Gen2
+ ┃
+ ┣ 📂 Resources                           # Sample data + supporting assets
+ ┃ ┣ 📂 Datasets
+ ┃ ┃ ┣ 📂 Customers
+ ┃ ┃ ┃ ┣ 📜 customers_0001.csv
+ ┃ ┃ ┃ ┣ 📜 customers_0002.csv
+ ┃ ┃ ┃ ┣ 📜 customers_0003.csv
+ ┃ ┃ ┃ ┣ 📜 customers_0004.csv
+ ┃ ┃ ┃ ┣ 📜 customers_0005.csv
+ ┃ ┃ ┃ ┗ 📜 customers_0006.csv
+ ┃ ┃ ┣ 📂 Products
+ ┃ ┃ ┃ ┣ 📜 products_0001.csv
+ ┃ ┃ ┃ ┣ 📜 products_0002.csv
+ ┃ ┃ ┃ ┗ 📜 products_0003.csv
+ ┃ ┃ ┗ 📂 Stores
+ ┃ ┃   ┗ 📜 stores_0001.csv
+ ┃ ┃
+ ┃ ┣ 📂 Screenshots
+ ┃ ┃ ┣ 🖼️ Screenshot 2026-07-19 210926.png   # PL_RegisterMetadata canvas
+ ┃ ┃ ┣ 🖼️ Screenshot 2026-07-19 210943.png   # PL_MetaDataChild canvas
+ ┃ ┃ ┗ 🖼️ Screenshot 2026-07-19 211149.png   # audit.FileControl in SSMS
+ ┃ ┃
+ ┃ ┗ 📂 Script
+ ┃   ┗ 📜 Script.sql                      # SQL DDL/DML (audit schema & tables)
+ ┃
+ ┣ 📜 LICENSE                             # MIT License
+ ┣ 📜 publish_config.json                 # ADF publish/deployment config
+ ┗ 📜 README.md                           # You are here
 ```
-
+ 
+> 🗂️ `factory`, `pipeline`, `dataset`, and `linkedService` are the standard **ADF Git-integration folders** (auto-generated when the Data Factory is connected to this repo's `main` branch). `Resources` is a custom folder holding the sample CSVs, the SQL script, and reference screenshots used throughout this README.
 ---
 
 ## ⚙️ Setup & Prerequisites
@@ -252,6 +282,7 @@ sequenceDiagram
 
 **Khana Patro**
 *Data Engineer 
+
 ⭐️ If you found this project useful, consider giving it a star!
 
 </div>
