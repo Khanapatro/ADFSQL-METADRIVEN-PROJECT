@@ -1,0 +1,3 @@
+ProductID,SKUCode,ProductName,ShortDescription,Category,SubCategory,Department,Brand,ModelNumber,Color,Size,Weight,UnitOfMeasure,SupplierID,SupplierName,CountryOfOrigin,CostPrice,MRP,StandardSellingPrice,TaxPercent,ReorderLevel,LaunchDate,ProductStatus
+P11998,R9FI4CQP,Dell Laptop 1998,Dell Laptop high quality product,Electronics,Laptop,FMCG,Dell,M-1472,Black,L,2.19,Piece,S315,Supplier_38,China,1200,1400,1350,12,73,28-05-2025,Active
+P11999,Y2PIN78V,Nestle Accessory 1999,Nestle Accessory high quality product,Electronics,Accessory,Electronics,Nestle,M-5248,Blue,M,9.22,Piece,S891,Supplier_26,India,2500,2400,2950,5,192,27-11-2023,Active
