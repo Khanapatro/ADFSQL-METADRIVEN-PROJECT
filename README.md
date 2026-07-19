@@ -9,9 +9,7 @@
 ![ADLS Gen2](https://img.shields.io/badge/Azure%20Data%20Lake%20Gen2-00A4EF?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![SSMS](https://img.shields.io/badge/SSMS-A91D22?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/adf-metadata-framework?style=flat-square)
-![GitHub stars](https://img.shields.io/github/stars/yourusername/adf-metadata-framework?style=social)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=0078D4&center=true&vCenter=true&width=650&lines=Metadata-Driven+Ingestion+Framework;No+Hardcoded+Pipelines...+Ever;Self-Registering+%7C+Self-Tracking+%7C+Self-Healing;Built+with+ADF+%2B+ADLS+%2B+Azure+SQL" alt="Typing SVG" />
 
